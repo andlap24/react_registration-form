@@ -1,8 +1,6 @@
-.nav {
-  display: flex;
-  margin: 20px;
+@import './styles/reset.scss';
 
-  * {
-    margin-right: 10px;
-  }
+* {
+  background-color: #e1e7ed;
+  color: #333333;
 }
