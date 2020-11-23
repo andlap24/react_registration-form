@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './RegistrationPage.scss';
+
+import { UserList } from '../UserList';
 
 export const RegistrationPage = () => {
   const [lastName, setLastName] = useState('');
@@ -10,21 +13,46 @@ export const RegistrationPage = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [modalWindow, setModalWindow] = useState(false);
 
-  /* const handleFormSubmit = () => {
-    localStorage.setItem('password', password);
-    localStorage.setItem('user', password.length ? user : '');
-  }; */
+  const handleFormSubmit = () => {
+    const localUser = {
+      lastName,
+      firstName,
+      patronymic,
+      position,
+      login,
+      password,
+    };
+
+    localStorage.setItem(`${login}`, JSON.stringify(localUser));
+  };
+
+  const displayUsersList = () => (
+    setModalWindow(true)
+  );
 
   return (
-    <>
+    <div className="wrapper">
       <div>
         <nav className="nav">
-          <Link className="nav__link" to="/">Home</Link>
-          <Link className="nav__link" to="/login">Login</Link>
-          <Link className="nav__link" to="/registration">Sign up</Link>
+          <Link className="nav__link" to="/">
+            <button type="button">Войти</button>
+          </Link>
+          <Link className="nav__link" to="/registration">Регистрация</Link>
+          <button
+            className="nav__link-btn"
+            type="button"
+            onClick={displayUsersList}
+          >
+            Пользователи
+          </button>
         </nav>
       </div>
+
+      {modalWindow && (
+        <UserList setModalWindow={setModalWindow} />
+      )}
 
       <form className="form">
         <label>
@@ -49,7 +77,7 @@ export const RegistrationPage = () => {
           />
         </label>
 
-        <label htmlFor="patronymic">
+        <label>
           <input
             type="text"
             name="patronymic"
@@ -75,7 +103,7 @@ export const RegistrationPage = () => {
             type="text"
             className="form__input"
             value={login}
-            placeholder="Должность"
+            placeholder="Логин"
             onChange={event => setLogin(event.target.value)}
             required
           />
@@ -103,8 +131,14 @@ export const RegistrationPage = () => {
           />
         </label>
 
-        <button className="form__btn" type="button">Сохранить</button>
+        <button
+          className="form__btn"
+          type="button"
+          onClick={handleFormSubmit}
+        >
+          Добавить
+        </button>
       </form>
-    </>
+    </div>
   );
 };

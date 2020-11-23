@@ -1,0 +1,60 @@
+.modal-overlay {
+  display: block;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  top: 0%;
+  bottom: 0%;
+  background-color: black;
+  z-index: 5;
+  opacity: 0.7;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 310px);
+  transform: translate(-50%, -50%);
+  width: 620px;
+  height: 625px;
+
+  background-color: white;
+
+  z-index: 6;
+
+  &__close-button {
+    outline: none;
+    position: absolute;
+    left: 580px;
+    top: 25px;
+  
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  
+  &__close-button:hover {
+    transform: scale(1.2);
+  }
+
+  &__user-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.list {
+  &__item {
+    height: 40px;
+    width: 300px;
+
+    border: 1px solid white;
+    border-radius: 3px;
+
+    margin-bottom: 10px;
+  }
+}

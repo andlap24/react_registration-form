@@ -1,22 +1,20 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './LoginPage.scss';
 
 export const LoginPage = () => {
-  const localUser = localStorage.getItem('user');
+  const [selectedUser, setSelectedUser] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const localUser = Object.keys(localStorage);
 
-  const handleFormSubmit = () => {
-    const pass = localStorage.getItem('password');
+  const checkPassword = () => {
+    const pass = JSON.parse(localStorage.getItem(selectedUser)).password;
 
-    if (!localUser || password === pass) {
-      console.log(isPasswordValid);
-      setIsPasswordValid(true);
-    } else {
-      setIsPasswordValid(false);
-    }
+    console.log(pass);
+
+    password === pass ? setIsPasswordValid(true) : setIsPasswordValid(false);
   };
 
   return (
@@ -24,9 +22,23 @@ export const LoginPage = () => {
       <form
         className="login-page__form login-form"
       >
-        <select className="login-form__select">
-          <option selected="selected">Choose a user</option>
-          {!!localUser && <option value="">{localUser}</option>}
+        <select
+          className="login-form__select"
+          defaultValue="Choose a user"
+          onChange={(event) => {
+            setSelectedUser(event.target.value);
+            console.log(event.target.value);
+          }}
+        >
+          {localUser.length > 0
+            && localUser.map(user => (
+              <option
+                key={user}
+                value={user}
+              >
+                {user}
+              </option>
+            ))}
         </select>
 
         <label>
@@ -40,15 +52,15 @@ export const LoginPage = () => {
           />
         </label>
 
-        {localUser !== null || isPasswordValid
+        {localUser.length > 0 || isPasswordValid
           ? (
             <Link to="/">
               <button
                 className="login-form__btn"
                 type="button"
-                onClick={handleFormSubmit}
+                onClick={checkPassword}
               >
-                Log in
+                Войти
               </button>
             </Link>
           )
@@ -58,12 +70,18 @@ export const LoginPage = () => {
                 className="form__btn"
                 type="button"
               >
-                Sign up
+                Регистрация
               </button>
             </Link>
           )
         }
       </form>
+
+      {isPasswordValid
+        && (
+          <Redirect to="/registration" />
+        )
+      }
     </div>
   );
 };
