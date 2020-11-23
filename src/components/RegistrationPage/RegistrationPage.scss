@@ -11,20 +11,17 @@
   align-items: center;
 
   &__link {
-    color: #e1e7ed;
     width: 150px;
-  }
-
-  &__link-btn {
     color: #e1e7ed;
     background-color: #333333;
     border: none;
     font-size: 15px;
     cursor: pointer;
+
+    transition: transform 0.3s;
   }
 
-  &__link,
-  &__link-btn:hover {
+  &__link:hover {
     transform: scale(1.2);
   }
 }

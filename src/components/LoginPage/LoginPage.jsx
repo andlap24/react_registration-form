@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './LoginPage.scss';
 
@@ -9,12 +9,30 @@ export const LoginPage = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const localUser = Object.keys(localStorage);
 
+  useEffect(() => {
+    setIsPasswordValid(false);
+    setSelectedUser('');
+    setPassword('');
+  }, []);
+
   const checkPassword = () => {
+    console.log(selectedUser);
+
     const pass = JSON.parse(localStorage.getItem(selectedUser)).password;
 
-    console.log(pass);
+    console.log(JSON.parse(localStorage.getItem(selectedUser)).password);
 
     password === pass ? setIsPasswordValid(true) : setIsPasswordValid(false);
+  };
+
+  const handleSelectedUser = event => (
+    setSelectedUser(event.target.value)
+  );
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      checkPassword();
+    }
   };
 
   return (
@@ -26,10 +44,10 @@ export const LoginPage = () => {
           className="login-form__select"
           defaultValue="Choose a user"
           onChange={(event) => {
-            setSelectedUser(event.target.value);
-            console.log(event.target.value);
+            handleSelectedUser(event);
           }}
         >
+          <option value="Choose a user">Choose a user</option>
           {localUser.length > 0
             && localUser.map(user => (
               <option
@@ -49,6 +67,8 @@ export const LoginPage = () => {
             value={password}
             placeholder="Password"
             onChange={event => setPassword(event.target.value)}
+            onKeyPress={event => handleKeyPress(event)}
+            required
           />
         </label>
 

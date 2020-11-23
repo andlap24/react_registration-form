@@ -36,12 +36,14 @@ export const RegistrationPage = () => {
     <div className="wrapper">
       <div>
         <nav className="nav">
-          <Link className="nav__link" to="/">
-            <button type="button">Войти</button>
+          <Link to="/">
+            <button className="nav__link" type="button">Вход</button>
           </Link>
-          <Link className="nav__link" to="/registration">Регистрация</Link>
+          <Link to="/registration">
+            <button className="nav__link" type="button">Регистрация</button>
+          </Link>
           <button
-            className="nav__link-btn"
+            className="nav__link"
             type="button"
             onClick={displayUsersList}
           >
