@@ -1,21 +1,35 @@
-/* eslint-disable no-console */
-import React, { useState } from 'react';
-import './RegistrationPage.scss';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './EditUser.scss';
 
-export const RegistrationPage = () => {
-  const [lastName, setLastName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [patronymic, setPatronymic] = useState('');
-  const [position, setPosition] = useState('');
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+import { UserList } from '../UserList';
+import { SelectedUser } from '../../context';
+
+export const EditUser = () => {
+  const selectedUser = useContext(SelectedUser);
+
+  // eslint-disable-next-line no-console
+  console.log(selectedUser);
+  const getData = (value) => {
+    const data = JSON.parse(localStorage.getItem('andlap'));
+
+    return data[value];
+  };
+
+  const [lastName, setLastName] = useState(getData('lastName'));
+  const [firstName, setFirstName] = useState(getData('firstName'));
+  const [patronymic, setPatronymic] = useState(getData('patronymic'));
+  const [position, setPosition] = useState(getData('position'));
+  const [login, setLogin] = useState(getData('login'));
+  const [password, setPassword] = useState(getData('password'));
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const [lastNameError, setLastNameError] = useState(false);
   const [firstNameError, setFirstNameError] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [addUserError, setAddUserError] = useState(false);
+  const [saveUserError, setSaveUserError] = useState(false);
+  const [modalWindow, setModalWindow] = useState(false);
 
   const handleFormSubmit = () => {
     const localUser = {
@@ -29,13 +43,16 @@ export const RegistrationPage = () => {
 
     if (password === confirmPassword && lastName !== '' && login !== '') {
       localStorage.setItem(`${login}`, JSON.stringify(localUser));
-      resetForm();
     }
 
     if (loginError === true) {
-      setAddUserError(true);
+      setSaveUserError(true);
     }
   };
+
+  const displayUsersList = () => (
+    setModalWindow(true)
+  );
 
   const onBlur = (input, setter) => {
     if (input === '') {
@@ -43,30 +60,39 @@ export const RegistrationPage = () => {
     }
   };
 
-  const resetForm = () => {
-    setLastName('');
-    setFirstName('');
-    setPatronymic('');
-    setPosition('');
-    setLogin('');
-    setPassword('');
-    setConfirmPassword('');
-    setLastNameError(false);
-    setFirstNameError(false);
-    setLoginError(false);
-    setPasswordError(false);
-    setAddUserError(false);
-  };
-
   return (
     <div className="wrapper">
+      <div>
+        <nav className="nav">
+          <Link to="/">
+            <button className="nav__link" type="button">Вход</button>
+          </Link>
+          <Link to="/registration">
+            <button className="nav__link" type="button">Регистрация</button>
+          </Link>
+          <button
+            className="nav__link"
+            type="button"
+            onClick={displayUsersList}
+          >
+            Пользователи
+          </button>
+          <Link to="/form">
+            <button className="nav__link" type="button">Форма</button>
+          </Link>
+        </nav>
+      </div>
+
+      {modalWindow && (
+        <UserList setModalWindow={setModalWindow} />
+      )}
+
       <form className="form">
         <label>
           <input
             type="text"
             className="form__input"
             value={lastName}
-            placeholder="Фамилия*"
             onChange={event => setLastName(event.target.value)}
             onBlur={() => onBlur(lastName, setLastNameError)}
           />
@@ -81,7 +107,6 @@ export const RegistrationPage = () => {
             type="text"
             className="form__input"
             value={firstName}
-            placeholder="Имя*"
             onChange={event => setFirstName(event.target.value)}
             onBlur={() => onBlur(firstName, setFirstNameError)}
           />
@@ -97,7 +122,6 @@ export const RegistrationPage = () => {
             name="patronymic"
             className="form__input"
             value={patronymic}
-            placeholder="Отчество"
             onChange={event => setPatronymic(event.target.value)}
           />
         </label>
@@ -107,7 +131,6 @@ export const RegistrationPage = () => {
             type="text"
             className="form__input"
             value={position}
-            placeholder="Должность"
             onChange={event => setPosition(event.target.value)}
           />
         </label>
@@ -117,7 +140,6 @@ export const RegistrationPage = () => {
             type="text"
             className="form__input"
             value={login}
-            placeholder="Логин*"
             onChange={event => setLogin(event.target.value)}
             onBlur={() => onBlur(login, setLoginError)}
           />
@@ -132,7 +154,6 @@ export const RegistrationPage = () => {
             type="password"
             className="form__input"
             value={password}
-            placeholder="Пароль*"
             onChange={event => setPassword(event.target.value)}
             onBlur={() => onBlur(password, setPasswordError)}
           />
@@ -153,7 +174,7 @@ export const RegistrationPage = () => {
           />
         </label>
 
-        {addUserError && (
+        {saveUserError && (
           <p className="login-form__message">Заполните все обязательные поля</p>
         )}
 

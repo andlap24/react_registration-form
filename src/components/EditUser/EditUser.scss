@@ -1,0 +1,25 @@
+@import '../../styles/main.scss';
+
+.nav {
+  background-color: $dark;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__link {
+    width: 150px;
+    color: #e1e7ed;
+    background-color: $dark;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: transform 0.3s;
+  }
+
+  &__link:hover {
+    transform: scale(1.2);
+  }
+}
