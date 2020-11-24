@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import './UserList.scss';
 
 import button from '../../images/close-button.svg';
@@ -30,6 +29,10 @@ export const UserList = ({ setModalWindow }) => {
           return (
             <div className="modal__user-list list">
               <p className="list__item">
+                <b>Логин:&nbsp;</b>
+                {userData.login}
+              </p>
+              <p className="list__item">
                 <b>Фамилия:&nbsp;</b>
                 {userData.lastName}
               </p>
@@ -46,10 +49,6 @@ export const UserList = ({ setModalWindow }) => {
                 {userData.position}
               </p>
               <p className="list__item">
-                <b>Логин:&nbsp;</b>
-                {userData.login}
-              </p>
-              <p className="list__item">
                 <b>Пароль:&nbsp;</b>
                 {userData.password}
               </p>
@@ -59,4 +58,8 @@ export const UserList = ({ setModalWindow }) => {
       </div>
     </>
   );
+};
+
+UserList.propTypes = {
+  setModalWindow: PropTypes.func.isRequired,
 };

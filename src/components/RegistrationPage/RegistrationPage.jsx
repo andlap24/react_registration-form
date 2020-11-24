@@ -15,6 +15,12 @@ export const RegistrationPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [modalWindow, setModalWindow] = useState(false);
 
+  const [lastNameError, setLastNameError] = useState(false);
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [addUserError, setAddUserError] = useState(false);
+
   const handleFormSubmit = () => {
     const localUser = {
       lastName,
@@ -25,12 +31,37 @@ export const RegistrationPage = () => {
       password,
     };
 
-    localStorage.setItem(`${login}`, JSON.stringify(localUser));
+    if (password === confirmPassword && lastName !== '' && login !== '') {
+      localStorage.setItem(`${login}`, JSON.stringify(localUser));
+      resetForm();
+    }
+
+    setAddUserError(true);
   };
 
   const displayUsersList = () => (
     setModalWindow(true)
   );
+
+  const onBlur = (input, setter) => {
+    if (input === '') {
+      setter(true);
+    }
+  };
+
+  const resetForm = () => {
+    setLastName('');
+    setFirstName('');
+    setPatronymic('');
+    setPosition('');
+    setLogin('');
+    setPassword('');
+    setConfirmPassword('');
+    setLastNameError(false);
+    setFirstNameError(false);
+    setLoginError(false);
+    setPasswordError(false);
+  };
 
   return (
     <div className="wrapper">
@@ -49,6 +80,9 @@ export const RegistrationPage = () => {
           >
             Пользователи
           </button>
+          <Link to="/form">
+            <button className="nav__link" type="button">Форма</button>
+          </Link>
         </nav>
       </div>
 
@@ -62,22 +96,30 @@ export const RegistrationPage = () => {
             type="text"
             className="form__input"
             value={lastName}
-            placeholder="Фамилия"
+            placeholder="Фамилия*"
             onChange={event => setLastName(event.target.value)}
-            required
+            onBlur={() => onBlur(lastName, setLastNameError)}
           />
         </label>
+
+        {lastNameError && (
+          <p className="login-form__message">Поле не должно быть пустым</p>
+        )}
 
         <label>
           <input
             type="text"
             className="form__input"
             value={firstName}
-            placeholder="Имя"
+            placeholder="Имя*"
             onChange={event => setFirstName(event.target.value)}
-            required
+            onBlur={() => onBlur(firstName, setFirstNameError)}
           />
         </label>
+
+        {firstNameError && (
+          <p className="login-form__message">Поле не должно быть пустым</p>
+        )}
 
         <label>
           <input
@@ -105,33 +147,45 @@ export const RegistrationPage = () => {
             type="text"
             className="form__input"
             value={login}
-            placeholder="Логин"
+            placeholder="Логин*"
             onChange={event => setLogin(event.target.value)}
-            required
+            onBlur={() => onBlur(login, setLoginError)}
           />
         </label>
+
+        {loginError && (
+          <p className="login-form__message">Поле не должно быть пустым</p>
+        )}
 
         <label>
           <input
             type="password"
             className="form__input"
             value={password}
-            placeholder="Пароль"
+            placeholder="Пароль*"
             onChange={event => setPassword(event.target.value)}
-            required
+            onBlur={() => onBlur(password, setPasswordError)}
           />
         </label>
+
+        {passwordError && (
+          <p className="login-form__message">Поле не должно быть пустым</p>
+        )}
 
         <label>
           <input
             type="password"
             className="form__input"
             value={confirmPassword}
-            placeholder="Подтвердите пароль"
+            placeholder="Подтвердите пароль*"
             onChange={event => setConfirmPassword(event.target.value)}
             required
           />
         </label>
+
+        {addUserError && (
+          <p className="login-form__message">Заполните все обязательные поля</p>
+        )}
 
         <button
           className="form__btn"

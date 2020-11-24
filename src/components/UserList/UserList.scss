@@ -1,3 +1,5 @@
+@import '../../styles/main.scss';
+
 .modal-overlay {
   display: block;
   position: absolute;
@@ -5,7 +7,7 @@
   left: 0%;
   top: 0%;
   bottom: 0%;
-  background-color: black;
+  background-color: $dark;
   z-index: 5;
   opacity: 0.7;
 }
@@ -14,21 +16,28 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  display: grid;
-  grid-template-columns: repeat(2, 310px);
   transform: translate(-50%, -50%);
-  width: 620px;
-  height: 625px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 20px;
+  justify-items: center;
+
+  width: 680px;
+  height: 725px;
+  padding: 10px;
 
   background-color: white;
 
   z-index: 6;
 
+  overflow: auto;
+
   &__close-button {
     outline: none;
     position: absolute;
-    left: 580px;
-    top: 25px;
+    left: 630px;
+    top: 20px;
   
     transition: transform 0.3s;
     cursor: pointer;
@@ -44,6 +53,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
   }
 }
 

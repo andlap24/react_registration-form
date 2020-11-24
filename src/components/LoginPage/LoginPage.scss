@@ -1,5 +1,7 @@
+@import '../../styles/main.scss';
+
 .login-page {
-  background-color: #e1e7ed;
+  background-color: $light;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,43 +17,51 @@
   &__select {
     height: 40px;
     width: 300px;
+    padding: 0 10px;
 
     outline: none;
     border: 1px solid white;
     border-radius: 3px;
 
     background-color: white;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
     transition: 0.3s;
     margin-bottom: 15px;
 
-    &:hover {
-      width: 320px;
+    &:hover, :focus {
+      width: 310px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
   }
 
   &__password {
     @extend .login-form__select;
     box-sizing: border-box;
+
+    &:hover, :focus {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+  }
+
+  &__message {
+    color: $danger;
+    margin-bottom: 15px;
   }
 
   &__btn {
-/*     height: 40px;
-    width: 200px; */
+    padding: 10px 80px;
 
-    padding: 10px 100px;
-
-    border: 1px solid #333333;
+    border: 1px solid $dark;
     border-radius: 3px;
 
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
     transition: 0.3s;
 
     cursor: pointer;
   }
 
   &__btn:hover {
-    background-color: #333333;
+    background-color: $dark;
     color: white;
 
     padding: 10px 120px;

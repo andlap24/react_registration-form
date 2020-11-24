@@ -7,20 +7,16 @@ export const LoginPage = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const localUser = Object.keys(localStorage);
 
   useEffect(() => {
-    setIsPasswordValid(false);
-    setSelectedUser('');
-    setPassword('');
+    resetState();
   }, []);
 
   const checkPassword = () => {
-    console.log(selectedUser);
-
     const pass = JSON.parse(localStorage.getItem(selectedUser)).password;
-
-    console.log(JSON.parse(localStorage.getItem(selectedUser)).password);
 
     password === pass ? setIsPasswordValid(true) : setIsPasswordValid(false);
   };
@@ -35,6 +31,18 @@ export const LoginPage = () => {
     }
   };
 
+  const onBlur = (input) => {
+    if (input === '') {
+      setPasswordError(true);
+    }
+  };
+
+  const resetState = () => {
+    setIsPasswordValid(false);
+    setSelectedUser('');
+    setPassword('');
+  };
+
   return (
     <div className="login-page">
       <form
@@ -47,7 +55,7 @@ export const LoginPage = () => {
             handleSelectedUser(event);
           }}
         >
-          <option value="Choose a user">Choose a user</option>
+          <option value="Choose a user">Выберите пользователя</option>
           {localUser.length > 0
             && localUser.map(user => (
               <option
@@ -65,12 +73,16 @@ export const LoginPage = () => {
             type="password"
             name="password"
             value={password}
-            placeholder="Password"
+            placeholder="Пароль"
             onChange={event => setPassword(event.target.value)}
             onKeyPress={event => handleKeyPress(event)}
-            required
+            onBlur={() => onBlur(password)}
           />
         </label>
+
+        {passwordError && (
+          <p className="login-form__message">Введите, пожалуйста, пароль</p>
+        )}
 
         {localUser.length > 0 || isPasswordValid
           ? (
