@@ -1,65 +1,31 @@
-@import '../../styles/main.scss';
+@import '../../styles/vars.scss';
 
-.modal-overlay {
-  display: block;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  top: 0%;
-  bottom: 0%;
-  background-color: $dark;
-  z-index: 5;
-  opacity: 0.7;
-}
-
-.modal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
+.user-list {
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   gap: 20px;
   justify-items: center;
+  align-items: center;
+
+  margin: 0 auto;
 
   width: 680px;
   height: 725px;
   padding: 10px;
-
-  background-color: white;
-
-  z-index: 6;
-
-  overflow: auto;
-
-  &__close-button {
-    outline: none;
-    position: absolute;
-    left: 630px;
-    top: 20px;
-  
-    transition: transform 0.3s;
-    cursor: pointer;
-  }
-  
-  &__close-button:hover {
-    transform: scale(1.2);
-  }
-
-  &__user-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    border-radius: 5px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
-  }
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-color: white;
+
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
+
   &__item {
     height: 40px;
     width: 300px;
@@ -67,6 +33,13 @@
     border: 1px solid white;
     border-radius: 3px;
 
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -43,6 +43,16 @@ export const RegistrationPage = () => {
     }
   };
 
+  const addTestUser = () => {
+    setLastName('Dumbledore');
+    setFirstName('Albus');
+    setPatronymic('Percival Wulfric Brian');
+    setPosition('Headmaster of Hogwarts School');
+    setLogin('Dumbly-dorr');
+    setPassword('123');
+    setConfirmPassword('123');
+  };
+
   const resetForm = () => {
     setLastName('');
     setFirstName('');
@@ -163,6 +173,13 @@ export const RegistrationPage = () => {
           onClick={handleFormSubmit}
         >
           Добавить
+        </button>
+        <button
+          className="form__btn"
+          type="button"
+          onClick={addTestUser}
+        >
+          Test user
         </button>
       </form>
     </div>

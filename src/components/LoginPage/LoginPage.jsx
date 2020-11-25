@@ -1,9 +1,6 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './LoginPage.scss';
-
-import { SelectedUser } from '../../context';
 
 export const LoginPage = () => {
   const [selectedUser, setSelectedUser] = useState('');
@@ -41,25 +38,25 @@ export const LoginPage = () => {
 
   const resetState = () => {
     setIsPasswordValid(false);
-    /* setSelectedUser(''); */
+    setSelectedUser('');
     setPassword('');
   };
 
   return (
-    <SelectedUser.Provider value={selectedUser}>
-      <div className="login-page">
-        <form
-          className="login-page__form login-form"
+
+    <div className="login-page">
+      <form
+        className="login-page__form login-form"
+      >
+        <select
+          className="login-form__select"
+          defaultValue="Choose a user"
+          onChange={(event) => {
+            handleSelectedUser(event);
+          }}
         >
-          <select
-            className="login-form__select"
-            defaultValue="Choose a user"
-            onChange={(event) => {
-              handleSelectedUser(event);
-            }}
-          >
-            <option value="Choose a user">Выберите пользователя</option>
-            {localUser.length > 0
+          <option value="Choose a user">Выберите пользователя</option>
+          {localUser.length > 0
               && localUser.map(user => (
                 <option
                   key={user}
@@ -68,9 +65,9 @@ export const LoginPage = () => {
                   {user}
                 </option>
               ))}
-          </select>
+        </select>
 
-          {localUser.length > 0
+        {localUser.length > 0
           && (
             <label>
               <input
@@ -86,41 +83,37 @@ export const LoginPage = () => {
             </label>
           )}
 
-          {passwordError && (
-            <p className="login-form__message">Введите пароль</p>
-          )}
+        {passwordError && (
+          <p className="login-form__message">Введите пароль</p>
+        )}
 
-          {localUser.length > 0 || isPasswordValid
-            ? (
-              <Link to="/edituser">
-                <button
-                  className="login-form__btn"
-                  type="button"
-                  onClick={checkPassword}
-                >
-                  Войти
-                </button>
-              </Link>
-            )
-            : (
-              <Link to="/registration">
-                <button
-                  className="form__btn"
-                  type="button"
-                >
-                  Регистрация
-                </button>
-              </Link>
-            )
-          }
-        </form>
-
-        {isPasswordValid
-          && (
-            <Redirect to="/registration" />
+        {localUser.length > 0
+          ? (
+            <button
+              className="login-form__btn"
+              type="button"
+              onClick={checkPassword}
+            >
+              Войти
+            </button>
+          )
+          : (
+            <Link to="registration/">
+              <button
+                className="form__btn"
+                type="button"
+              >
+                Регистрация
+              </button>
+            </Link>
           )
         }
-      </div>
-    </SelectedUser.Provider>
+      </form>
+      {isPasswordValid
+        && (
+          <Redirect to={`profile/:${selectedUser}`} />
+        )
+      }
+    </div>
   );
 };

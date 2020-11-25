@@ -1,65 +1,55 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './UserList.scss';
 
-import button from '../../images/close-button.svg';
-
-export const UserList = ({ setModalWindow }) => {
+export const UserList = () => {
   const localUser = Object.keys(localStorage);
 
   return (
-    <>
-      <div className="modal-overlay" />
-      <div className="modal">
-        <div
-          className="modal__close-button"
-          role="button"
-          onClick={() => setModalWindow(false)}
-          tabIndex="0"
-          onKeyPress={() => setModalWindow(false)}
-        >
-          <img
-            src={button}
-            alt="close button"
-          />
-        </div>
-        {localUser.map((user) => {
-          const userData = JSON.parse(localStorage.getItem(user));
+    <div className="user-list">
+      {localUser.length === 0 && (
+        <Link to="registration/">
+          <button
+            className="form__btn centered"
+            type="button"
+          >
+            Зарегистрируйтесь
+          </button>
+        </Link>
+      )}
 
-          return (
-            <div className="modal__user-list list">
-              <p className="list__item">
-                <b>Логин:&nbsp;</b>
-                {userData.login}
-              </p>
-              <p className="list__item">
-                <b>Фамилия:&nbsp;</b>
-                {userData.lastName}
-              </p>
-              <p className="list__item">
-                <b>Имя:&nbsp;</b>
-                {userData.firstName}
-              </p>
-              <p className="list__item">
-                <b>Отчество:&nbsp;</b>
-                {userData.patronymic}
-              </p>
-              <p className="list__item">
-                <b>Должность:&nbsp;</b>
-                {userData.position}
-              </p>
-              <p className="list__item">
-                <b>Пароль:&nbsp;</b>
-                {userData.password}
-              </p>
-            </div>
-          );
-        })}
-      </div>
-    </>
+      {localUser.map((user) => {
+        const userData = JSON.parse(localStorage.getItem(user));
+
+        return (
+          <div className="user-list__list list">
+            <p className="list__item">
+              <b>Логин:&nbsp;</b>
+              {userData.login}
+            </p>
+            <p className="list__item">
+              <b>Фамилия:&nbsp;</b>
+              {userData.lastName}
+            </p>
+            <p className="list__item">
+              <b>Имя:&nbsp;</b>
+              {userData.firstName}
+            </p>
+            <p className="list__item">
+              <b>Отчество:&nbsp;</b>
+              {userData.patronymic}
+            </p>
+            <p className="list__item">
+              <b>Должность:&nbsp;</b>
+              {userData.position}
+            </p>
+            <p className="list__item">
+              <b>Пароль:&nbsp;</b>
+              {userData.password}
+            </p>
+          </div>
+        );
+      })}
+    </div>
   );
-};
-
-UserList.propTypes = {
-  setModalWindow: PropTypes.func.isRequired,
 };

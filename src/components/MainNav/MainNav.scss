@@ -1,0 +1,7 @@
+@import 'bulma/css/bulma.css';
+@import '../../styles/vars.scss';
+
+.navbar {
+  background-color: $light;
+  box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
+}

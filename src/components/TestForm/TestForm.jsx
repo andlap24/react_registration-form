@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './TestForm.scss';
 
 export const TestForm = () => {
@@ -37,15 +36,6 @@ export const TestForm = () => {
         >
           Отобразить
         </button>
-
-        <Link to="/registration">
-          <button
-            type="button"
-            className="form__return-btn"
-          >
-            Назад
-          </button>
-        </Link>
       </div>
     </>
   );

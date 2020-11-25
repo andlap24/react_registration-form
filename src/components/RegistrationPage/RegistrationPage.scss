@@ -1,4 +1,4 @@
-@import '../../styles/main.scss';
+@import '../../styles/vars.scss';
 
 .wrapper {
   background-color: $light;
@@ -57,9 +57,13 @@
   }
 
   &__btn {
+    outline: none;
     height: 40px;
     width: 200px;
-    border: 1px solid $dark;
+    margin: 15px 0;
+    color: $blue;
+    background-color: $light-blue;
+    border: 1px solid $blue;
     border-radius: 3px;
 
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -70,24 +74,11 @@
 
   &__btn:hover {
     width: 300px;
-    background-color: $dark;
+    background-color: $blue;
     color: white;
   }
 
-  &__return-btn {
-    outline: none;
-    height: 25px;
-    width: 100px;
-    border: 1px solid $dark;
-    border-radius: 3px;
-    margin-top: 15px;
-    transition: 0.3s;
-
-    cursor: pointer;
-  }
-
-  &__return-btn:hover {
-    background-color: $dark;
-    color: white;
+  &__btn:focus {
+    @extend .form__btn
   }
 }
