@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './EditUser.scss';
+import './EditUserPage.scss';
 
-export const EditUser = () => {
+export const EditUserPage = () => {
   const selectedUser = sessionStorage.getItem('selectedUser');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
