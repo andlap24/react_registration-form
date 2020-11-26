@@ -1,8 +1,8 @@
 # Login and registration form
 
-- [DEMO LINK](https://andlap24.github.io/react_registration-form)
-
 ## Description
+- [DEMO LINK](https://andlap24.github.io/react_registration-form)
+##
 Stack: React, HTML5, SASS(SCSS).
 
 ### Dependencies
