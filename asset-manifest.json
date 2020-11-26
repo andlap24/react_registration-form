@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/react_registration-form/static/css/main.dd6aa7e6.chunk.css",
-    "main.js": "/react_registration-form/static/js/main.7ee837c0.chunk.js",
-    "main.js.map": "/react_registration-form/static/js/main.7ee837c0.chunk.js.map",
+    "main.css": "/react_registration-form/static/css/main.9babc9c9.chunk.css",
+    "main.js": "/react_registration-form/static/js/main.ee7e0bca.chunk.js",
+    "main.js.map": "/react_registration-form/static/js/main.ee7e0bca.chunk.js.map",
     "runtime-main.js": "/react_registration-form/static/js/runtime-main.00b057da.js",
     "runtime-main.js.map": "/react_registration-form/static/js/runtime-main.00b057da.js.map",
     "static/css/2.fb3091a2.chunk.css": "/react_registration-form/static/css/2.fb3091a2.chunk.css",
@@ -10,14 +10,14 @@
     "static/js/2.91fd2feb.chunk.js.map": "/react_registration-form/static/js/2.91fd2feb.chunk.js.map",
     "index.html": "/react_registration-form/index.html",
     "static/css/2.fb3091a2.chunk.css.map": "/react_registration-form/static/css/2.fb3091a2.chunk.css.map",
-    "static/css/main.dd6aa7e6.chunk.css.map": "/react_registration-form/static/css/main.dd6aa7e6.chunk.css.map",
+    "static/css/main.9babc9c9.chunk.css.map": "/react_registration-form/static/css/main.9babc9c9.chunk.css.map",
     "static/js/2.91fd2feb.chunk.js.LICENSE.txt": "/react_registration-form/static/js/2.91fd2feb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.00b057da.js",
     "static/css/2.fb3091a2.chunk.css",
     "static/js/2.91fd2feb.chunk.js",
-    "static/css/main.dd6aa7e6.chunk.css",
-    "static/js/main.7ee837c0.chunk.js"
+    "static/css/main.9babc9c9.chunk.css",
+    "static/js/main.ee7e0bca.chunk.js"
   ]
 }
