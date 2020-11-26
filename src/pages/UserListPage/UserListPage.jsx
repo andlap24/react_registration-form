@@ -60,13 +60,15 @@ export const UserListPage = () => {
         })}
 
         {localUser.length !== 0 && (
-          <button
-            type="button"
-            className="button is-danger is-light"
-            onClick={removeUser}
-          >
-            Очистить
-          </button>
+          <Link to="/signup">
+            <button
+              type="button"
+              className="button is-danger is-light"
+              onClick={removeUser}
+            >
+              Очистить
+            </button>
+          </Link>
         )}
       </div>
     </>

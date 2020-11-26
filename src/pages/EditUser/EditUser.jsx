@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './EditUser.scss';
 
 export const EditUser = () => {
@@ -55,6 +56,16 @@ export const EditUser = () => {
 
   return (
     <>
+      {selectedUser.length === 0 && (
+        <Link to="/signup">
+          <button
+            className="form__btn centered"
+            type="button"
+          >
+            Зарегистрируйтесь
+          </button>
+        </Link>
+      )}
       <form className="form">
         <label>
           <input
