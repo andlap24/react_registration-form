@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './UserList.scss';
 
 export const UserList = () => {
+  const [, setIsUserDeleted] = useState(false);
   const localUser = Object.keys(localStorage);
+
+  const removeUser = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    setIsUserDeleted(true);
+  };
 
   return (
     <div className="user-list">
       {localUser.length === 0 && (
-        <Link to="registration/">
+        <Link to="/login">
           <button
             className="form__btn centered"
             type="button"
@@ -50,6 +57,15 @@ export const UserList = () => {
           </div>
         );
       })}
+
+      {localUser.length !== 0 && (
+        <button
+          type="button"
+          onClick={removeUser}
+        >
+          Очистить
+        </button>
+      )}
     </div>
   );
 };

@@ -11,13 +11,15 @@ import { TestForm } from './components/TestForm';
 
 export const App = () => (
   <div>
-    <MainNav />
+    {sessionStorage.getItem('selectedUser') !== null && (
+      <MainNav />
+    )}
     <Switch>
-      <Route path="/registration" component={RegistrationPage} />
-      <Route path="/userlist" component={UserList} />
+      <Route exact path="/" component={LoginPage} />
+      <Route path="/login" component={RegistrationPage} />
       <Route path="/profile" component={EditUser} />
+      <Route path="/userlist" component={UserList} />
       <Route path="/form" component={TestForm} />
-      <Route path="/" component={LoginPage} />
       <Route render={() => <h1>404: page not found</h1>} />
     </Switch>
   </div>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import './EditUser.scss';
 
-export const EditUser = (props) => {
-  const selectedUser = props.history.location.pathname.slice(10);
+export const EditUser = () => {
+  const selectedUser = sessionStorage.getItem('selectedUser');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [patronymic, setPatronymic] = useState('');
@@ -58,7 +57,7 @@ export const EditUser = (props) => {
   return (
     <>
       {selectedUser.length === 0 && (
-        <Link to="registration/">
+        <Link to="/login">
           <button
             className="form__btn centered"
             type="button"
@@ -170,8 +169,4 @@ export const EditUser = (props) => {
       )}
     </>
   );
-};
-
-EditUser.propTypes = {
-  history: PropTypes.string.isRequired,
 };

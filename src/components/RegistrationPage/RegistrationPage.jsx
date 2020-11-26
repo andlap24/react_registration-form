@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './RegistrationPage.scss';
 
 export const RegistrationPage = () => {
@@ -154,7 +154,7 @@ export const RegistrationPage = () => {
 
         <label>
           <input
-            type="password"
+            type="text"
             className="form__input"
             value={confirmPassword}
             placeholder="Подтвердите пароль*"
@@ -167,13 +167,15 @@ export const RegistrationPage = () => {
           <p className="login-form__message">Заполните все обязательные поля</p>
         )}
 
-        <button
-          className="form__btn"
-          type="button"
-          onClick={handleFormSubmit}
-        >
-          Добавить
-        </button>
+        <Link to="/">
+          <button
+            className="form__btn"
+            type="button"
+            onClick={handleFormSubmit}
+          >
+            Добавить
+          </button>
+        </Link>
         <button
           className="form__btn"
           type="button"

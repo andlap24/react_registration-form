@@ -18,6 +18,8 @@ export const LoginPage = () => {
     const pass = JSON.parse(localStorage.getItem(selectedUser)).password;
 
     password === pass ? setIsPasswordValid(true) : setIsPasswordValid(false);
+
+    sessionStorage.setItem('selectedUser', selectedUser);
   };
 
   const handleSelectedUser = event => (
@@ -43,7 +45,6 @@ export const LoginPage = () => {
   };
 
   return (
-
     <div className="login-page">
       <form
         className="login-page__form login-form"
@@ -87,6 +88,10 @@ export const LoginPage = () => {
           <p className="login-form__message">Введите пароль</p>
         )}
 
+        {isPasswordValid && (
+          <p className="login-form__message">Неверный пароль</p>
+        )}
+
         {localUser.length > 0
           ? (
             <button
@@ -98,7 +103,7 @@ export const LoginPage = () => {
             </button>
           )
           : (
-            <Link to="registration/">
+            <Link to="/login">
               <button
                 className="form__btn"
                 type="button"
@@ -111,7 +116,7 @@ export const LoginPage = () => {
       </form>
       {isPasswordValid
         && (
-          <Redirect to={`profile/:${selectedUser}`} />
+          <Redirect to={`/profile/:${selectedUser}`} />
         )
       }
     </div>

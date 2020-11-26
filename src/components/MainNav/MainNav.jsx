@@ -7,7 +7,7 @@ export const MainNav = () => (
     <div className="navbar-menu">
       <div className="navbar-start">
         <NavLink
-          to="/profile/"
+          to="/profile"
           className="navbar-item is-tab"
           activeClassName="is-active"
         >
@@ -15,7 +15,7 @@ export const MainNav = () => (
         </NavLink>
 
         <NavLink
-          to="/userlist/"
+          to="/userlist"
           className="navbar-item is-tab"
           activeClassName="is-active"
         >
@@ -23,7 +23,7 @@ export const MainNav = () => (
         </NavLink>
 
         <NavLink
-          to="/form/"
+          to="/form"
           className="navbar-item is-tab"
           activeClassName="is-active"
         >
@@ -35,7 +35,7 @@ export const MainNav = () => (
         <div className="navbar-item">
           <div className="buttons">
             <NavLink
-              to="/registration/"
+              to="/login"
               className="button is-link"
               activeClassName="is-active"
             >
