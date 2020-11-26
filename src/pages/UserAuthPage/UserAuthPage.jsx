@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import './LoginPage.scss';
+import './UserAuthPage.scss';
 
-export const LoginPage = () => {
+export const UserAuthPage = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -15,9 +15,12 @@ export const LoginPage = () => {
   }, []);
 
   const checkPassword = () => {
-    const pass = JSON.parse(localStorage.getItem(selectedUser)).password;
+    // eslint-disable-next-line max-len
+    const enteredPassword = JSON.parse(localStorage.getItem(selectedUser)).password;
 
-    password === pass ? setIsPasswordValid(true) : setIsPasswordValid(false);
+    password === enteredPassword
+      ? setIsPasswordValid(true)
+      : setIsPasswordValid(false);
 
     sessionStorage.setItem('selectedUser', selectedUser);
   };
@@ -103,7 +106,7 @@ export const LoginPage = () => {
             </button>
           )
           : (
-            <Link to="/login">
+            <Link to="/signup">
               <button
                 className="form__btn"
                 type="button"
@@ -116,7 +119,7 @@ export const LoginPage = () => {
       </form>
       {isPasswordValid
         && (
-          <Redirect to={`/profile/:${selectedUser}`} />
+          <Redirect to="/home/profile" />
         )
       }
     </div>

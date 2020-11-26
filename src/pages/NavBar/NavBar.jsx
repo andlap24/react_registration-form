@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './MainNav.scss';
+import './NavBar.scss';
 
-export const MainNav = () => (
+export const NavBar = () => (
   <nav className="navbar">
     <div className="navbar-menu">
       <div className="navbar-start">
         <NavLink
-          to="/profile"
+          to="/home/profile"
           className="navbar-item is-tab"
           activeClassName="is-active"
         >
@@ -15,7 +15,7 @@ export const MainNav = () => (
         </NavLink>
 
         <NavLink
-          to="/userlist"
+          to="/home/userlist"
           className="navbar-item is-tab"
           activeClassName="is-active"
         >
@@ -23,7 +23,7 @@ export const MainNav = () => (
         </NavLink>
 
         <NavLink
-          to="/form"
+          to="/home/form"
           className="navbar-item is-tab"
           activeClassName="is-active"
         >
@@ -35,7 +35,7 @@ export const MainNav = () => (
         <div className="navbar-item">
           <div className="buttons">
             <NavLink
-              to="/login"
+              to="/signup"
               className="button is-link"
               activeClassName="is-active"
             >

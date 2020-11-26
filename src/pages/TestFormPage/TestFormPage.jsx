@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './TestForm.scss';
+import './TestFormPage.scss';
 
-export const TestForm = () => {
+export const TestFormPage = () => {
   const [input, setInput] = useState('');
   const [text, setText] = useState(' ');
 
