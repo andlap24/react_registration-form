@@ -1,0 +1,9 @@
+@import '../../styles/vars.scss';
+
+.test-form {
+  background-color: $light;
+
+  &__title {
+    margin-bottom: 30px;
+  }
+}

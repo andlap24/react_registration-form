@@ -1,0 +1,84 @@
+@import '../../styles/vars.scss';
+
+.wrapper {
+  background-color: $light;
+}
+
+.nav {
+  background-color: $dark;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__link {
+    outline: none;
+    padding: 0 30px;
+    color: $light;
+    background-color: $dark;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: transform 0.3s;
+  }
+
+  &__link:hover {
+    transform: scale(1.2);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__input {
+    height: 40px;
+    width: 300px;
+    padding: 0 10px;
+
+    outline: none;
+    border: 1px solid white;
+    border-radius: 3px;
+
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.25), 0 0 15px rgba(0,0,0,0.22);
+    transition: 0.3s;
+    margin-bottom: 15px;
+  }
+
+  &__input:hover, :focus {
+    width: 310px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  &__btn {
+    outline: none;
+    height: 40px;
+    width: 200px;
+    margin: 15px 0;
+    color: $blue;
+    background-color: $light-blue;
+    border: 1px solid $blue;
+    border-radius: 3px;
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transition: 0.3s;
+
+    cursor: pointer;
+  }
+
+  &__btn:hover {
+    width: 300px;
+    background-color: $blue;
+    color: white;
+  }
+
+  &__btn:focus {
+    @extend .form__btn
+  }
+}

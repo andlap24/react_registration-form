@@ -1,8 +1,6 @@
-.nav {
-  display: flex;
-  margin: 20px;
+@import './styles/reset.scss';
+@import './styles/vars.scss';
 
-  * {
-    margin-right: 10px;
-  }
+* {
+  color: $dark;
 }
