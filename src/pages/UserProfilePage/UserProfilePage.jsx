@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { NavBar } from '../NavBar';
+import { NavBar } from '../../components/NavBar';
 import { EditUser } from '../EditUser';
 import { UserListPage } from '../UserListPage';
 import { TestFormPage } from '../TestFormPage';
